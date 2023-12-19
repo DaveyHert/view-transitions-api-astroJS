@@ -1,0 +1,105 @@
+---
+import { slide } from "astro:transitions";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <div>
+    <h1>About Page</h1>
+    <div class="container">
+      <div>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda,
+        voluptatibus? Voluptatibus saepe magnam repudiandae, ullam placeat
+        voluptates. Eius totam odio, excepturi nostrum facere natus ipsum dolor
+        voluptas commodi velit delectus modi repudiandae non similique hic
+        pariatur enim inventore, sunt impedit incidunt aperiam libero laboriosam
+        reprehenderit dolorum? Dolores deserunt officiis eos sit porro nihil
+        error, quaerat minus fuga rem ab autem? Consequatur quasi provident
+        labore omnis deleniti eligendi at harum, sint ducimus blanditiis ipsum
+        doloremque modi voluptatibus eaque nam itaque veritatis! A ea error iure
+        nobis distinctio veniam odit voluptatum harum alias placeat aperiam,
+        obcaecati sequi exercitationem excepturi. Vero, ut excepturi.
+      </div>
+      <img
+        src="./image.png"
+        alt=""
+        transition:animate={slide({ duration: "1s" })}
+      />
+    </div>
+
+    <div class="button">
+      <a href="/">Go to Home Page</a>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    padding: 20px;
+  }
+
+  /* img {
+    width: 500px;
+  } */
+
+  .container {
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
+    width: 1500px;
+    margin: 0 auto;
+  }
+
+  .container > * {
+    flex: 1;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+  }
+
+  aside {
+    display: flex;
+    width: 1000px;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  a {
+    text-align: center;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #333;
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 50%;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>

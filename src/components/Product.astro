@@ -1,0 +1,45 @@
+---
+// type Props = { product: object };
+
+import { ViewTransitions } from "astro:transitions";
+
+// const { product } = Astro.props;
+
+interface Props {
+  product?: any;
+}
+
+const { product } = Astro.props;
+---
+
+<a href={`/products/${product.id}`}>
+  <ViewTransitions />
+  <h2>{product.title}</h2>
+  <img
+    src={product.image}
+    alt={product.title}
+    transition:name={`"${product.id}"`}
+  />
+</a>
+
+<style>
+  a {
+    padding: 20px;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #333;
+    gap: 20px;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+
+  img {
+    width: 50%;
+  }
+</style>

@@ -1,0 +1,109 @@
+---
+import { ViewTransitions } from "astro:transitions";
+export const getStaticPaths = async () => {
+  const data = await fetch("https://fakestoreapi.com/products?limit=9");
+  const products = await data.json();
+
+  const paths = products.map((product: any) => {
+    return {
+      params: {
+        id: product.id,
+      },
+      props: {
+        product,
+      },
+    };
+  });
+
+  return paths;
+};
+
+const { product } = Astro.props;
+---
+
+<div class="product__container">
+  ]<ViewTransitions />
+  <div class="product__text">
+    <h2>{product.title}</h2>
+    <p>{product.description}</p>
+    <span class="price">${product.price}</span>
+    <div>
+      <button>Rating: {product.rating.rate}</button>
+      <button>Number of Ratings: {product.rating.count}</button>
+    </div>
+  </div>
+  <div>
+    <img
+      src={product.image}
+      alt={product.title}
+      transition:name={`"${product.id}"`}
+    />
+  </div>
+  <a href="/" class="back">Back</a>
+</div>
+
+<style>
+  .product__container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.1);
+    width: 1200px;
+    margin: 2rem auto;
+    border-radius: 5px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    position: relative;
+  }
+
+  span {
+    line-height: 2;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  p {
+    line-height: 2;
+  }
+
+  .product__container > * {
+    flex: 1;
+  }
+
+  img {
+    width: 75%;
+  }
+
+  .product__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .price {
+    font-weight: 500;
+    font-size: 2rem;
+  }
+
+  button {
+    background: none;
+    border: 1px solid #333;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+  }
+
+  .back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+</style>
